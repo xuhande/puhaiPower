@@ -15,15 +15,10 @@ export default {
     drawLine(){
       let myChart = echarts.init(document.getElementById("myChart"));
       let option;
-      this.$axios.get("http://localhost:8081/getData") .then((res) => {
-        const data = res.data;
-        // const list = data.series.map(good=>{
-        //   let list =  good.data;
-        //   return [...list]
-        // })
-        console.log(data)
-        option = {
-          title: data.title,
+      option = {
+          title: {
+            "text": "电力负荷",
+          },
           xAxis: [{
             name:'日期',
             data: ["1", "2", "3", "4", "5"]
@@ -36,16 +31,25 @@ export default {
             name: '销量',
             type: 'line',
             smooth:'true',
-            data: data.series.data
+            data: [10, 20, 30, 40, 50]
           }]
         };
+      let ws = new WebSocket("ws://localhost:8081/ws")
+      ws.onopen = function () {
+        console.log("链接成功")
+      }
+      ws.onmessage = function (msg) {
+        let pl = JSON.parse(msg.data)
+        console.log(pl)
+        option.series[0].data = pl
         option && myChart.setOption(option);
-      })
+      }
+
     }
   },
   mounted() {
     this.drawLine();
-  },
+  }
 }
 </script>
 

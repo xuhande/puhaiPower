@@ -1,10 +1,21 @@
 package controllers
 
 import (
+	"encoding/json"
 	"github.com/gin-gonic/gin"
+	"github.com/gorilla/websocket"
 	"net/http"
 	"puhai/server/service"
 )
+
+var (
+	upgrader = websocket.Upgrader{
+		CheckOrigin: func(r *http.Request) bool {
+			return true
+		},
+	}
+)
+
 
 func ViewData(c *gin.Context) {
 	powerLoad := service.GetData()
@@ -27,4 +38,30 @@ func ViewData(c *gin.Context) {
 			},
 		},
 	})
+}
+
+func WsHandler(c *gin.Context) {
+	var (
+		wsConn *websocket.Conn
+		err error
+		data []byte
+	)
+
+	pl := service.GetData()
+	data, _ = json.Marshal(pl)
+
+	if wsConn, err = upgrader.Upgrade(c.Writer, c.Request, nil);err != nil {
+		return // 获取连接失败直接返回
+	}
+
+	for {
+		if err = wsConn.WriteMessage(websocket.TextMessage, data); err != nil {
+			goto ERR // 发送消息失败，关闭连接
+		}
+	}
+
+ERR:
+	// 关闭连接
+	wsConn.Close()
+
 }

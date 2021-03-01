@@ -7,4 +7,7 @@ import (
 
 func LoadRouter(e *gin.Engine) {
 	e.GET("/getData", controllers.ViewData)
+	e.GET("ws", func(c *gin.Context) {
+		controllers.WsHandler(c)
+	})
 }
