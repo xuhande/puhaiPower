@@ -45,16 +45,18 @@ func WsHandler(c *gin.Context) {
 		wsConn *websocket.Conn
 		err error
 		data []byte
+		pl []float32
 	)
 
-	pl := service.GetData()
-	data, _ = json.Marshal(pl)
+
 
 	if wsConn, err = upgrader.Upgrade(c.Writer, c.Request, nil);err != nil {
 		return // 获取连接失败直接返回
 	}
 
 	for {
+		pl = service.GetData()
+		data, _ = json.Marshal(pl)
 		if err = wsConn.WriteMessage(websocket.TextMessage, data); err != nil {
 			goto ERR // 发送消息失败，关闭连接
 		}
