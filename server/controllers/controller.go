@@ -55,6 +55,7 @@ func WsHandler(c *gin.Context) {
 	}
 
 	for {
+		
 		pl = service.GetData()
 		data, _ = json.Marshal(pl)
 		if err = wsConn.WriteMessage(websocket.TextMessage, data); err != nil {
