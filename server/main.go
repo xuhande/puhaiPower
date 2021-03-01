@@ -1,11 +1,22 @@
 package main
 
 import (
-	"fmt"
-	"puhai/server/models"
+	"github.com/gin-gonic/gin"
+	"log"
+	"puhai/server/global"
+	"puhai/server/initalize"
+	"puhai/server/middlewares"
+	"puhai/server/routers"
 )
 
 func main() {
-	data := models.NewData("9.30", 350)
-	fmt.Println(data)
+	global.PH_DB = initalize.GormMysql()
+	initalize.MysqlTables(global.PH_DB)
+	r := gin.Default()
+	r.Use(middlewares.Cors())
+	routers.LoadRouter(r)
+	err := r.Run(":8081")
+	if err != nil {
+		log.Fatal("run err")
+	}
 }

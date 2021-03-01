@@ -15,25 +15,28 @@ export default {
     drawLine(){
       let myChart = echarts.init(document.getElementById("myChart"));
       let option;
-      this.$axios.get("http://picture.nj-jay.com/dat.json") .then((res) => {
+      this.$axios.get("http://localhost:8081/getData") .then((res) => {
         const data = res.data;
-        const list = data.series.map(good=>{
-          let list =  good.data;
-          return [...list]
-        })
+        // const list = data.series.map(good=>{
+        //   let list =  good.data;
+        //   return [...list]
+        // })
+        console.log(data)
         option = {
           title: data.title,
           xAxis: [{
             name:'日期',
-            data: data.xAxis.data
+            data: ["1", "2", "3", "4", "5"]
           }],
           yAxis: {
+            name:'电力负荷/MW',
             type: 'value'
           },
           series: [{
             name: '销量',
             type: 'line',
-            data: Array.from(...list)
+            smooth:'true',
+            data: data.series.data
           }]
         };
         option && myChart.setOption(option);

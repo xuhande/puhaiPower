@@ -1,0 +1,6 @@
+mysql:
+  ip: "nj-jay.com"
+  port: "3306"
+  username: "mysql_nj_jay_com"
+  database: "mysql_nj_jay_com"
+  password: "000000"
