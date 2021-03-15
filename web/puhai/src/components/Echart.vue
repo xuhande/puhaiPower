@@ -19,16 +19,30 @@ export default {
           title: {
             "text": "电力负荷",
           },
+          tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+              type: 'cross'
+            }
+          },
+          toolbox: {
+            show: true,
+            feature: {
+              saveAsImage: {}
+            }
+          },
           xAxis: [{
+            type: 'category',
+            boundaryGap: false,
             name:'日期',
-            data: ["1", "2", "3", "4", "5"]
+            data: ['00:00', '01:15', '02:30', '03:45', '05:00', '06:15', '07:30', '08:45', '10:00', '11:15', '12:30', '13:45', '15:00', '16:15', '17:30', '18:45', '20:00', '21:15', '22:30', '23:45']
           }],
           yAxis: {
             name:'电力负荷/MW',
             type: 'value'
           },
           series: [{
-            name: '销量',
+            name: '用电量',
             type: 'line',
             smooth:'true',
             data: [10, 20, 30, 40, 50]
