@@ -2,6 +2,7 @@ package initalize
 
 import (
 	"fmt"
+	"github.com/qiniu/api.v7/v7/auth/qbox"
 	"github.com/spf13/viper"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
@@ -32,12 +33,20 @@ func GormMysql() *gorm.DB {
 
 func MysqlTables(db *gorm.DB) {
 	err := db.AutoMigrate(
-		&models.Data{},
+		&models.RealDataMz{},
 	)
 
 	if err != nil {
 		fmt.Println("register table error")
 	}
+}
+
+func InitMAC() *qbox.Mac {
+	ak, sk := viper.GetString("qiniu.ak"), viper.GetString("qiniu.sk")
+	fmt.Println(ak)
+	fmt.Println(sk)
+	mac := qbox.NewMac(ak, sk)
+	return mac
 }
 
 func init() {

@@ -16,7 +16,6 @@ var (
 	}
 )
 
-
 func ViewData(c *gin.Context) {
 	powerLoad := service.GetData()
 	c.IndentedJSON(http.StatusOK, gin.H{
@@ -55,7 +54,7 @@ func WsHandler(c *gin.Context) {
 	}
 
 	for {
-		
+
 		pl = service.GetData()
 		data, _ = json.Marshal(pl)
 		if err = wsConn.WriteMessage(websocket.TextMessage, data); err != nil {
@@ -68,3 +67,13 @@ ERR:
 	wsConn.Close()
 
 }
+
+func UpToken(c *gin.Context) {
+	token := service.GenerateToken()
+	c.IndentedJSON(200, gin.H{
+		"token":token,
+	})
+}
+
+
+

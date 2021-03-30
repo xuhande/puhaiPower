@@ -10,4 +10,5 @@ func LoadRouter(e *gin.Engine) {
 	e.GET("ws", func(c *gin.Context) {
 		controllers.WsHandler(c)
 	})
+	e.GET("/upload", controllers.UpToken)
 }

@@ -1,10 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import page1 from '../components/page1'
-import page2 from '../components/page2'
+import upload from '../components/upload'
+import login from '../view/login/login'
 import element from "../components/element"
 import home from "../components/home"
-import Dashboard from "../../view/dashboard/Dashboard"
+import Dashboard from "../view/dashboard/Dashboard"
 import Echart from "../components/Echart";
 
 Vue.use(Router)
@@ -13,14 +13,14 @@ Vue.use(Router)
 export default new Router ({
   routes: [
     {
-      path: '/page1',
-      name: 'page1',
-      component: page1
+      path: '/upload',
+      name: 'upload',
+      component: upload
     },
     {
-      path: '/page2',
-      name: 'page2',
-      component: page2
+      path: '/login',
+      name: 'login',
+      component: login
     },
     {
       path: '/element',

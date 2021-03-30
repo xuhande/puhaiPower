@@ -48,7 +48,7 @@ export default {
             data: [10, 20, 30, 40, 50]
           }]
         };
-      let ws = new WebSocket("ws://localhost:8081/ws")
+      let ws = new WebSocket("ws://gocloudcoder.com:8081/ws")
       ws.onopen = function () {
         console.log("链接成功")
       }

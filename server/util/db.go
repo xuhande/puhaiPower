@@ -6,7 +6,7 @@ import (
 )
 
 func GetFromDb() []float32 {
-	var data []models.Data
+	var data []models.RealDataMz
 	pl := make([]float32, 0)
 	global.PH_DB.Find(&data)
 	for _, v := range data {

@@ -11,6 +11,7 @@ import (
 
 func main() {
 	global.PH_DB = initalize.GormMysql()
+	global.MAC = initalize.InitMAC()
 	initalize.MysqlTables(global.PH_DB)
 	r := gin.Default()
 	r.Use(middlewares.Cors())

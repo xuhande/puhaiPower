@@ -1,6 +1,11 @@
 mysql:
-  ip: "nj-jay.com"
+  ip: "gocloudcoder.com"
   port: "3306"
-  username: "mysql_nj_jay_com"
-  database: "mysql_nj_jay_com"
+  username: "qn-server"
+  database: "qn-server"
   password: "000000"
+
+qiniu:
+  ak: "zM_pCg7E1kBvwD0DlGQUadtxVGkumuKNQIDVI4Nl"
+  sk: "P2mdTgHaJ7PPX7cggzpBHti-VKppSh-Mqkj-hWeO"
+  bucket: "nj-jay"

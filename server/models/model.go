@@ -1,6 +1,6 @@
 package models
 
-type Data struct {
+type RealDataMz struct {
 	//日期
 	Date string `json:"date" gorm:"private key"`
 
@@ -8,12 +8,9 @@ type Data struct {
 	PowerLoad float32 `json:"powerLoad"`
 
 	//温度
-	Tem float32 `json:"tem"`
+	Temperature float32 `json:"tem"`
 }
 
-func NewData(date string, powerLoad float32) *Data {
-	return &Data{
-		Date:date,
-		PowerLoad: powerLoad,
-	}
+type Login struct {
+
 }

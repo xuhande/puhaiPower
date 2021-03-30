@@ -9,7 +9,7 @@
 import HelloWorld from './components/HelloWorld'
 import Echart from "./components/Echart"
 import home from "./components/home"
-import Dashboard from "../view/dashboard/Dashboard";
+import Dashboard from "./view/dashboard/Dashboard";
 export default {
   name: 'App',
   components: {
